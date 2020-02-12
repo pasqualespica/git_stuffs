@@ -1,0 +1,12 @@
+README.md
+__pycache__
+aaaa
+bugfix
+erro.txt
+hello.py
+java
+myname.py
+new_file
+pas1
+prova_file
+ultimofile
