@@ -1,5 +1,11 @@
 # GIT repo-prove ..
 
+## base
+https://realpython.com/python-git-github-intro/
+
+## advance
+https://realpython.com/advanced-git-for-pythonistas/
+
 
 ## some commands …
 
@@ -40,6 +46,8 @@ git push origin messo_tag_001
 
 ```
 
+## Ref links ... 
+
 https://www.atlassian.com/git/tutorials/resetting-checking-out-and-reverting
 
 https://jeffkreeftmeijer.com/git-flow/
@@ -49,7 +57,6 @@ https://jeffkreeftmeijer.com/git-flow/
 https://alblue.bandlem.com/2011/10/git-tip-of-week-understanding-index.html
 
 https://git-scm.com/book/en/v2/Git-Tools-Revision-Selection
-
 
 https://learngitbranching.js.org/
 
