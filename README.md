@@ -31,6 +31,22 @@ git branch -d my_feature_two
 git push
 git branch -D my_feature_two
 git push --delete origin my_feature_two
+```
+
+To delete a local branch
+```
+git branch -d the_local_branch
+```
+
+To remove a remote branch (if you know what you are doing!)
+```
+git push origin :the_remote_branch
+```
+
+or simply use the new syntax (v1.7.0)
+```
+git push origin --delete the_remote_branch
+```
 
 to seee HEAD and commit status and add TAG
 
@@ -42,13 +58,16 @@ git show
 git push origin messo_tag_001
 ```
 
-GIT ADD 
-
-git add -A 	stages all changes
-git add . 		stages new files and modifications, without deletions
-git add -u 	stages modifications and deletions, without new files 
-
 ## Useful link reference ...
+
+### Git add 
+https://stackoverflow.com/questions/572549/difference-between-git-add-a-and-git-add
+
+```
+git add -A 	    stages all changes
+git add . 		stages new files and modifications, without deletions
+git add -u 	    stages modifications and deletions, without new files 
+```
 
 ### GitFlow
 https://jeffkreeftmeijer.com/git-flow/
