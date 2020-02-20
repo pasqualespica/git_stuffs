@@ -66,7 +66,7 @@ https://stackoverflow.com/questions/572549/difference-between-git-add-a-and-git-
 ```
 git add -A 	    stages all changes
 git add . 		stages new files and modifications, without deletions
-git add -u 	    stages modifications and deletions, without new files 
+git add -u 	    stages modifications and deletions, without new files
 ```
 
 ### GitFlow
