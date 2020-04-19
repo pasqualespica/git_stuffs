@@ -1,7 +1,5 @@
-![alt text](img/git.jpeg)
-# GIT ..
 
-
+![alt text](img/git.png)
 
 ## base
 https://realpython.com/python-git-github-intro/
@@ -76,9 +74,10 @@ git add -u 	    stages modifications and deletions, without new files
 show all config parameters
 ```
 git config -l
-
+```
+set *email*
+```
 git config --global user.email "email@example.com"
-
 ```
 
 https://help.github.com/en/github/setting-up-and-managing-your-github-user-account/setting-your-commit-email-address
