@@ -69,6 +69,18 @@ git add . 		stages new files and modifications, without deletions
 git add -u 	    stages modifications and deletions, without new files
 ```
 
+### Git config
+show all config parameters
+```
+git config -l
+
+git config --global user.email "email@example.com"
+
+```
+
+https://help.github.com/en/github/setting-up-and-managing-your-github-user-account/setting-your-commit-email-address
+
+
 ### GitFlow
 https://jeffkreeftmeijer.com/git-flow/
 
@@ -83,7 +95,5 @@ https://git-scm.com/book/en/v2/Git-Tools-Revision-Selection
 
 ### Learning ...
 https://learngitbranching.js.org/
-
-
 
 
