@@ -1,4 +1,7 @@
+![alt text](img/git.jpeg)
 # GIT ..
+
+
 
 ## base
 https://realpython.com/python-git-github-intro/
