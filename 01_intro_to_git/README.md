@@ -1,47 +1,25 @@
-# Introduction to Git and GitHub for Python Developers
+## Introduction to Git and GitHub for Python Developers
 
 https://realpython.com/python-git-github-intro/
 
 
-## What Is Git?
-Git is a distributed version control system (DVCS). Let’s break that down a bit and look at what it means.
-
-Version Control
-A version control system (VCS) is a set of tools that track the history of a set of files. This means that you can tell your VCS (Git, in our case) to save the state of your files at any point. Then, you may continue to edit the files and store that state as well. Saving the state is similar to creating a backup copy of your working directory. When using Git, we refer to this saving of state as making a commit.
-
-When you make a commit in Git, you add a commit message that explains at a high level what changes you made in this commit. Git can show you the history of all of the commits and their commit messages. This provides a useful history of what work you have done and can really help pinpoint when a bug crept into the system.
-
-In addition to showing you the log of changes you’ve made, Git also allows you to compare files between different commits. As I mentioned earlier, Git will also allow you to return any file (or all files) to an earlier commit with little effort.
-
-## Distributed Version Control
-OK, so that’s a version control system. What’s the distributed part? It’s probably easiest to answer that question by starting with a little history. Early version control systems worked by storing all of those commits locally on your hard drive. This collection of commits is called a repository. This solved the “I need to get back to where I was” problem but didn’t scale well for a team working on the same codebase.
-
-As larger groups started working (and networking became more common), VCSs changed to store the repository on a central server that was shared by many developers. While this solved many problems, it also created new ones, like file locking.
-
-Following the lead of a few other products, Git broke with that model. Git does not have a central server that has the definitive version of the repository. All users have a full copy of the repository. This means that getting all of the developers back on the same page can sometimes be tricky, but it also means that developers can work offline most of the time, only connecting to other repositories when they need to share their work.
-
-That last paragraph can seem a little confusing at first, because there are a lot of developers who use GitHub as a central repository from which everyone must pull. This is true, but Git doesn’t impose this. It’s just convenient in some circumstances to have a central place to share the code. The full repository is still stored on all local repos even when you use GitHub.
-
 ## Basic Usage
-Now that we’ve talked about what Git is in general, let’s run through an example and see it in action. We’ll start by working with Git just on our local machine. Once we get the hang of that, we’ll add GitHub and explain how you can interact with it.
 
 ### Creating a New Repo
 To work with Git, you first need to tell it who you are. You can set your username with the git config command:
-```bash
+
+```
 $ git config --global user.name "your name goes here"
 ```
 
-Once that is ste up, you will need a repo to work in. Creating a repo is simple. Use the git init command in a directory:
-
-```bash
+```
 $ mkdir example
 $ cd example
 $ git init
 Initialized empty Git repository in /home/jima/tmp/example/.git/
 ```
 
-Once you have a repo, you can ask Git about it. The Git command you’ll use most frequently is git status. Try that now:
-```bash
+```
 $ git status
 On branch master
 
@@ -50,14 +28,14 @@ Initial commit
 nothing to commit (create/copy files and use "git add" to track)
 ```
 
-This shows you a couple of bits of information: which branch you’re on, master (we’ll talk about branches later), and that you have nothing to commit. This last part means that there are no files in this directory that Git doesn’t know about. That’s good, as we just created the directory.
+### Adding a New File
 
-Adding a New File
-Now create a file that Git doesn’t know about. With your favorite editor, create the file hello.py, which has just a print statement in it.
-
+```python
 # hello.py
 print('hello Git!')
-If you run git status again, you’ll see a different result:
+```
+
+
 
 $ git status
 On branch master
@@ -556,82 +534,3 @@ If you’d like to take a deeper dive into Git, I can recommend these books:
 
 The free, online Pro Git is a very handy reference.
 For those of you who like to read on paper, there’s a print version of Pro Git and I found O’Reilly’s Version Control with Git to be useful.
- Watch Now This tutorial has a related video course created by the Real Python team. Watch it together with the written tutorial to deepen your understanding: Introduction to Git and GitHub for Python Developers
-
-🐍 Python Tricks 💌
-
-Get a short & sweet Python Trick delivered to your inbox every couple of days. No spam ever. Unsubscribe any time. Curated by the Real Python team.
-
-Python Tricks Dictionary Merge
-Email Address
-About Jim Anderson
-
-Jim Anderson
-Jim has been programming for a long time in a variety of languages. He has worked on embedded systems, built distributed build systems, done off-shore vendor management, and sat in many, many meetings.
-
-» More about Jim
-Each tutorial at Real Python is created by a team of developers so that it meets our high quality standards. The team members who worked on this tutorial are:
-
-Dan Bader
-Dan
-
-Joanna Jablonski
-Joanna
-
-Master Real-World Python Skills
-With Unlimited Access to Real Python
-
-
-
-Join us and get access to hundreds of tutorials, hands-on video courses, and a community of expert Pythonistas:
-
-
-What Do You Think?
-
-Tweet Share Email
-Real Python Comment Policy: The most useful comments are those written with the goal of learning from or helping out other readers—after reading the whole article and all the earlier comments. Complaints and insults generally won’t make the cut here.
-
-What’s your #1 takeaway or favorite thing you learned? How are you going to put your newfound skills to use? Leave a comment below and let us know.
-
-
-Keep Learning
-
-Related Tutorial Categories: basics tools
-
-Recommended Video Course: Introduction to Git and GitHub for Python Developers
-
-— FREE Email Series —
-
-🐍 Python Tricks 💌
-
-Python Tricks Dictionary Merge
-
-Email…
-🔒 No spam. Unsubscribe any time.
-
-All Tutorial Topics
-
-advanced api basics best-practices community databases data-science devops django docker flask front-end intermediate machine-learning python testing tools web-dev web-scraping
-
-Table of Contents
-
-What Is Git?
-Basic Usage
-Aside: The Staging Area
-.gitignore
-What NOT to Add to a Git Repo
-Aside: What is a SHA
-Git Log
-Going Back In Time: Checking Out a Particular Version of Your Code
-Branching Basics
-Working with Remote Repos
-Putting It All Together: Simple Git Workflow
-Tweet Share Email
- Recommended Video Course
-Introduction to Git and GitHub for Python Developers
-
-
-
-© 2012–2020 Real Python ⋅ Newsletter ⋅ Podcast ⋅ YouTube ⋅ Twitter ⋅ Facebook ⋅ Instagram ⋅ Python Tutorials ⋅ Search ⋅ Privacy Policy ⋅ Energy Policy ⋅ Advertise ⋅ Contact
-❤️ Happy Pythoning!
-
