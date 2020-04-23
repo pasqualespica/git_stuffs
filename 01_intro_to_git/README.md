@@ -506,6 +506,7 @@ Fast-forward
 
 Since we were on branch master, we did a merge of the my_new_feature branch to us. You can see that this is a fast forward merge and which files were changed. Let’s look at the log now:
 
+```
 commit 4a4f4492ded256aa7b29bf5176a17f9eda66efbb
 Author: Jim Anderson <jima@example.com>
 Date:   Thu Mar 8 21:03:09 2018 -0700
@@ -518,48 +519,55 @@ Date:   Thu Mar 8 20:57:42 2018 -0700
 
     created .gitignore
 [rest of log truncated]
+```
+
 If we had made changes to master before we merged, Git would have created a new commit that was the combination of the changes from the two branches.
 
 One of the things Git is fairly good at is understanding the common ancestors of different branches and automatically merging changes together. If the same section of code has been modified in both branches, Git can’t figure out what to do. When this happens, it stops the merge part way through and gives you instructions for how to fix the issue. This is called a merge conflict.
 
-Rebasing
+### Rebasing
 Rebasing is similar to merging but behaves a little differently. In a merge, if both branches have changes, then a new merge commit is created. In rebasing, Git will take the commits from one branch and replay them, one at a time, on the top of the other branch.
 
 I won’t do a detailed demo of rebasing here because setting up a demo to show this is a bit tricky in text and because there is an excellent web page that covers the topic well and that I’ll reference at the end of this section.
 
-Cherry-Picking
+### Cherry-Picking
 Cherry picking is another method for moving commits from one branch to another. Unlike merging and rebasing, with cherry-picking you specify exactly which commits you mean. The easiest way to do this is just specifying a single SHA:
-
+```
 $ git cherry-pick 4a4f4492ded256aa7b29bf5176a17f9eda66efbb
+```
+
 This tells Git to take the changes that went into 4a4f449 and apply them to the current branch.
 
 This feature can be very handy when you want a specific change but not the entire branch that change was made on.
 
-Quick Tip About Branching: I can’t leave this topic without recommending an excellent resource for learning about Git branches. Learn Git Branching has a set of exercises using graphical representations of commits and branches to clearly explain the difference between merging, rebasing, and cherry-picking. I highly recommend spending some time working through these exercises.
+**Quick Tip About Branching:** I can’t leave this topic without recommending an excellent resource for learning about Git branches. Learn Git Branching has a set of exercises using graphical representations of commits and branches to clearly explain the difference between merging, rebasing, and cherry-picking. I highly recommend spending some time working through these exercises.
 
-Working with Remote Repos
+### Working with Remote Repos
 All of the commands we’ve discussed up to this point work with only your local repo. They don’t do any communication to a server or over the network. It turns out that there are only four major Git commands which actually talk to remote repos:
 
-clone
-fetch
-pull
-push
+- clone
+- fetch
+- pull
+- push
+
 That’s it. Everything else is done on your local machine. (OK, to be completely accurate, there are other commands that talk to remotes, but they don’t fall into the basic category.)
 
 Let’s look at each of these commands in turn.
 
-Clone
+### Clone
 Git clone is the command you use when you have the address of a known repository and you want to make a local copy. For this example, let’s use a small repo I have on my GitHub account, github-playground.
 
 The GitHub page for that repo lives here. On that page you will find a “Clone or Download” button which gives you the URI to use with the git clone command. If you copy that, you can then clone the repo with:
-
+```
 git clone git@github.com:jima80525/github-playground.git
+```
+
 Now you have a complete repository of that project on your local machine. This includes all of the commits and all of the branches ever made on it. (Note: This repo was used by some friends while they were learning Git. I copied or forked it from someone else.)
 
 If you want to play with the other remote commands, you should create a new repo on GitHub and follow the same steps. You are welcome to fork the github-playground repo to your account and use that. Forking on GitHub is done by clicking the “fork” button in the UI.
 
-Fetch
-To explain the fetch command clearly, we need to take a step back and talk about how Git manages the relationship between your local repo and a remote repo. This next part is background, and while it’s not something you’ll use on a day-to-day basis, it will make the difference between fetch and pull make more sense.
+### Fetch
+To explain the `fetch` command clearly, we need to take a step back and talk about how Git manages the relationship between your local repo and a remote repo. This next part is background, and while it’s not something you’ll use on a day-to-day basis, it will make the difference between fetch and pull make more sense.
 
 When you clone a new repo, Git doesn’t just copy down a single version of the files in that project. It copies the entire repository and uses that to create a new repository on your local machine.
 
@@ -571,10 +579,12 @@ When you create a new branch and the name matches an existing branch on the serv
 
 Now that you know about the remotes/origin branches, understanding git fetch will be pretty easy. All fetch does is update all of the remotes/origin branches. It will modify only the branches stored in remotes/origin and not any of your local branches.
 
-Pull
-Git pull is simply the combination of two other commands. First, it does a git fetch to update the remotes/origin branches. Then, if the branch you are on is tracking a remote branch, then it does a git merge of the corresponding remote/origin branch to your branch.
+### Pull
+Git pull is simply the combination of two other commands. 
+1. First, it does a git fetch to update the remotes/origin branches. 
+2. Then, if the branch you are on is tracking a remote branch, then it does a git merge of the corresponding remote/origin branch to your branch.
 
-For example, say you were on the my_new_feature branch, and your coworker had just added some code to it on the server. If you do a git pull, Git will update ALL of the remotes/origin branches and then do a git merge remotes/origin/my_new_feature, which will get the new commit onto the branch you’re on!
+**For example, say you were on the my_new_feature branch, and your coworker had just added some code to it on the server. If you do a git pull, Git will update ALL of the remotes/origin branches and then do a git merge remotes/origin/my_new_feature, which will get the new commit onto the branch you’re on!**
 
 There are, of course, some limitations here. Git won’t let you even try to do a git pull if you have modified files on your local system. That can create too much of a mess.
 
@@ -582,23 +592,25 @@ If you have commits on your local branch, and the remote also has new commits (i
 
 Those of you who have been reading closely will see that you can also have Git do a rebase instead of a merge by doing git pull -r.
 
-Push
+### Push
 As you have probably guessed, git push is just the opposite of git pull. Well, almost the opposite. Push sends the info about the branch you are pushing and asks the remote if it would like to update its version of that branch to match yours.
 
 Generally, this amounts to you pushing your new changes up to the server. There are a lot of details and complexity here involving exactly what a fast-forward commit is.
 
 There is a fantastic write-up here. The gist of it is that git push makes your new commits available on the remote server.
+https://stackoverflow.com/questions/26005031/what-does-git-push-do-exactly/26005964#26005964
 
-Putting It All Together: Simple Git Workflow
+### Putting It All Together: Simple Git Workflow
 At this point, we’ve reviewed several basic Git commands and how you might use them. I’ll wrap up with a quick description of a possible workflow in Git. This workflow assumes you are working on your local repo and have a remote repo to which you will push changes. It can be GitHub, but it will work the same with other remote repos. It assumes you’ve already cloned the repo.
 
-git status – Make sure your current area is clean.
-git pull – Get the latest version from the remote. This saves merging issues later.
-Edit your files and make your changes. Remember to run your linter and do unit tests!
-git status – Find all files that are changed. Make sure to watch untracked files too!
-git add [files] – Add the changed files to the staging area.
-git commit -m "message" – Make your new commit.
-git push origin [branch-name] – Push your changes up to the remote.
+- git status – Make sure your current area is clean.
+- git pull – Get the latest version from the remote. This saves merging issues later.
+- Edit your files and make your changes. Remember to run your linter and do unit tests!
+- git status – Find all files that are changed. Make sure to watch untracked files too!
+- git add [files] – Add the changed files to the staging area.
+- git commit -m "message" – Make your new commit.
+- git push origin [branch-name] – Push your changes up to the remote.
+
 This is one of the more basic flows through the system. There are many, many ways to use Git, and you’ve just scratched the surface with this tutorial. If you use Vim or Sublime as your editor, you might want to checkout these tutorials, which will show you how to get plugins to integrate Git into your editor:
 
 VIM and Python – A Match Made in Heaven
