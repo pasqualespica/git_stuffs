@@ -347,28 +347,32 @@ Git status after checking out a specific SHA
 
 Alright. Now, how do we get back to where we were? There are two ways, one of which you should know already: git checkout 1cada8f. This will take you back to the SHA you were at when you started moving around.
 
-Note: One odd thing, at least in my version of Git, is that it still gives you a detached HEAD warning, even though you’re back to the SHA associated with a branch.
+**Note**: One odd thing, at least in my version of Git, is that it still gives you a detached HEAD warning, even though you’re back to the SHA associated with a branch.
 
-The other way of getting back is more common: check out the branch you were on. Git always starts you off with a branch called master. We’ll learn how to make other branches later but for now we’ll stick with master.
+The other way of getting back is more common: check out the branch you were on. Git always starts you off with a branch called `master`. We’ll learn how to make other branches later but for now we’ll stick with master.
 
 To get back to where you where, you can simply do git checkout master. This will return you to the latest SHA committed to the master branch, which in our case has the commit message “created .gitignore”. To put it another way, git checkout master tells Git to make HEAD point to the SHA marked by the label, or branch, master.
 
 Note that there are several methods for specifying a specific commit. The SHA is probably the easiest to understand. The other methods use different symbols and names to specify how to get to a specific commit from a known place, like HEAD. I won’t be going into those details in this tutorial, but if you’d like more details you can find them here.
 
-Branching Basics
+### Branching Basics
 Let’s talk a little more about branches. Branches provide a way for you to keep separate streams of development apart. While this can be useful when you’re working alone, it’s almost essential when you’re working on team.
 
 Imagine that I’m working in a small team and have a feature to add to the project. While I’m working on it, I don’t want to add my changes to master as it still doesn’t work correctly and might mess up my team members.
 
 I could just wait to commit the changes until I’m completely finished, but that’s not very safe and not always practical. So, instead of working on master, I’ll create a new branch:
 
+```
 $ git checkout -b my_new_feature
 Switched to a new branch 'my_new_feature'
 $ git status
 On branch my_new_feature
 nothing to commit, working directory clean
-We used the -b option on the checkout command to tell Git we wanted it to create a new branch. As you can see above, running git status in our branch shows us that the branch name has, indeed, changed. Let’s look at the log:
+```
 
+We used the `-b` option on the `checkout` command to tell Git we wanted it to create a new branch. As you can see above, running git status in our branch shows us that the branch name has, indeed, changed. Let’s look at the log:
+
+```
 $ git log
 commit 1cada8f59b43254f621d1984a9ffa0f4b1107a3b
 Author: Jim Anderson <jima@example.com>
@@ -387,6 +391,8 @@ Author: Jim Anderson <jima@example.com>
 Date:   Thu Mar 8 20:53:59 2018 -0700
 
     creating hello.py
+```
+
 As I hope you expected, the log looks exactly the same. When you create a new branch, the new branch will start at the location you were at. In this case, we were at the top of master, 1cada8f59b43254f621d1984a9ffa0f4b1107a3b, so that’s where the new branch starts.
 
 Now, let’s work on that feature. Make a change to the hello.py file and commit it. I’ll show you the commands for review, but I’ll stop showing you the output of the commands for things you’ve already seen:
