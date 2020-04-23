@@ -437,7 +437,8 @@ $ git show-branch my_new_feature master
 
 The chart it generates is a little confusing at first, so let’s walk though it in detail. First off, you call the command by giving it the name of two branches. In our case that was my_new_feature and master.
 
-The first two lines of the output are the key to decoding the rest of the text. The first non-space character on each line is either * or ! followed by the name of the branch, and then the commit message for the most recent commit on that branch. The * character is used to indicate that the branch is currently checked-out while the ! is used for all other branches. The character is in the column matching commits in the table below.
+The first two lines of the output are the key to decoding the rest of the text. 
+The first non-space character on each line is either `* or !` followed by the name of the branch, and then the commit message for the most recent commit on that branch. The * character is used to indicate that the branch is currently checked-out while the ! is used for all other branches. The character is in the column matching commits in the table below.
 
 The third line is a separator.
 
@@ -447,6 +448,7 @@ Finally, the last line of the output shows the first common commit for the two b
 
 This example is pretty easy. To make a better example, I’ve made it more interesting by adding a few more commits to my_new_feature and a few to master. That makes the output look like:
 
+```
 $ git show-branch my_new_feature master
 * [my_new_feature] commit 4
  ! [master] commit 3
@@ -457,8 +459,10 @@ $ git show-branch my_new_feature master
  + [master] commit 3
  + [master^] commit 2
 *+ [my_new_feature~3] created .gitignore
+```
 Now you can see that there are different commits in each branch. Note that the [my_new_feature~2] text is one of the commit selection methods I mentioned earlier. If you’d rather see the SHAs, you can have it show them by adding the –sha1-name option to the command:
 
+```
 $ git show-branch --sha1-name my_new_feature master
 * [my_new_feature] commit 4
  ! [master] commit 3
@@ -469,23 +473,27 @@ $ git show-branch --sha1-name my_new_feature master
  + [de7195a] commit 3
  + [580e206] commit 2
 *+ [1cada8f] created .gitignore
+```
+
 Now you’ve got a branch with a bunch of different commits on it. What do you do when you finally finish that feature and are ready to get it to the rest of your team?
 
 There are three main ways to get commits from one branch to another: merging, rebasing, and cherry-picking. We’ll cover each of these in turn in the next sections.
 
-Merging
+### Merging
 Merging is the simplest of the three to understand and use. When you do a merge, Git will create a new commit that combines the top SHAs of two branches if it needs to. If all of the commits in the other branch are ahead (based on) the top of the current branch, it will just do a fast-foward merge and place those new commits on this branch.
 
 Let’s back up to the point where our show-branch output looked like this:
 
+```
 $ git show-branch --sha1-name my_new_feature master
 * [my_new_feature] added code for feature x
  ! [master] created .gitignore
 --
 *  [4a4f449] added code for feature x
 *+ [1cada8f] created .gitignore
+```
 Now, we want to get that commit 4a4f449 to be on master. Check out master and run the git merge command there:
-
+```
 $ git checkout master
 Switched to branch 'master'
 
@@ -494,6 +502,8 @@ Updating 1cada8f..4a4f449
 Fast-forward
  hello.py | 1 +
  1 file changed, 1 insertion(+)
+```
+
 Since we were on branch master, we did a merge of the my_new_feature branch to us. You can see that this is a fast forward merge and which files were changed. Let’s look at the log now:
 
 commit 4a4f4492ded256aa7b29bf5176a17f9eda66efbb
