@@ -393,14 +393,17 @@ Date:   Thu Mar 8 20:53:59 2018 -0700
     creating hello.py
 ```
 
-As I hope you expected, the log looks exactly the same. When you create a new branch, the new branch will start at the location you were at. In this case, we were at the top of master, 1cada8f59b43254f621d1984a9ffa0f4b1107a3b, so that’s where the new branch starts.
+As I hope you expected, the log looks exactly the same. When you create a new branch, the new branch will start at the location you were at. In this case, we were at the top of master, `1cada8f59b43254f621d1984a9ffa0f4b1107a3b`, so that’s where the new branch starts.
 
 Now, let’s work on that feature. Make a change to the hello.py file and commit it. I’ll show you the commands for review, but I’ll stop showing you the output of the commands for things you’ve already seen:
 
+```
 $ git add hello.py
 $ git commit -m "added code for feature x"
-Now if you do git log, you’ll see that our new commit is present. In my case, it has a SHA 4a4f4492ded256aa7b29bf5176a17f9eda66efbb, but your repo is very likely to have a different SHA:
+```
 
+Now if you do git log, you’ll see that our new commit is present. In my case, it has a SHA 4a4f4492ded256aa7b29bf5176a17f9eda66efbb, but your repo is very likely to have a different SHA:
+```
 $ git log
 commit 4a4f4492ded256aa7b29bf5176a17f9eda66efbb
 Author: Jim Anderson <jima@example.com>
@@ -410,20 +413,28 @@ Date:   Thu Mar 8 21:03:09 2018 -0700
 
 commit 1cada8f59b43254f621d1984a9ffa0f4b1107a3b
 ... the rest of the output truncated ...
+```
+
 Now switch back to the master branch and look at the log:
 
+```
 git checkout master
 git log
+```
+
 Is the new commit “added code for feature x” there?
 
 Git has a built-in way to compare the state of two branches so you don’t have to work so hard. It’s the show-branch command. Here’s what it looks like:
 
+```
 $ git show-branch my_new_feature master
 * [my_new_feature] added code for feature x
  ! [master] created .gitignore
 --
 *  [my_new_feature] added code for feature x
 *+ [master] created .gitignore
+```
+
 The chart it generates is a little confusing at first, so let’s walk though it in detail. First off, you call the command by giving it the name of two branches. In our case that was my_new_feature and master.
 
 The first two lines of the output are the key to decoding the rest of the text. The first non-space character on each line is either * or ! followed by the name of the branch, and then the commit message for the most recent commit on that branch. The * character is used to indicate that the branch is currently checked-out while the ! is used for all other branches. The character is in the column matching commits in the table below.
