@@ -301,15 +301,16 @@ Date:   Sat Mar 3 13:10:12 2018 -0700
 
 As you can see in the listing above, all of the commit messages are shown for our repo in order. The start of each commit is marked with the word “commit” followed by the SHA of that commit. git log gives you the history of each of the SHAs.
 
-Going Back In Time: Checking Out a Particular Version of Your Code
+### Going Back In Time: Checking Out a Particular Version of Your Code
 Because Git remembers each commit you’ve made with it’s SHA, you can tell Git to go to any of those commits and view the repo as it existed then. The diagram below shows what Git thinks is in our repo:
 
 Git status before checking out a specific SHA
 
-Don’t worry about what master and HEAD mean in the diagram. We’ll explain those in just a bit.
+Don’t worry about what **master** and **HEAD** mean in the diagram. We’ll explain those in just a bit.
 
-To change where we are in our history, we will use the git checkout command to tell Git which SHA we want to look at. Let’s try that:
+To change where we are in our history, we will use the `git checkout` command to tell Git which SHA we want to look at. Let’s try that:
 
+```
 $ git checkout 946b99bfe1641102d39f95616ceaab5c3dc960f9
 Note: checking out '946b99bfe1641102d39f95616ceaab5c3dc960f9'.
 
@@ -323,15 +324,22 @@ do so (now or later) by using -b with the checkout command again. Example:
   git checkout -b <new-branch-name>
 
 HEAD is now at 946b99b... added myname module
-OK, so there’s a LOT of information here that’s confusing. Let’s start by defining some of those terms. Let’s start with HEAD.
+```
 
-HEAD is Git’s name for whatever SHA you happen to be looking at at any time. It does NOT mean what is on your filesystem or what is in your staging area. It means what Git thinks you have checked out. So, if you’ve edited a file, the version on your filesystem is different than the version in HEAD (and yes, HEAD is in ALL CAPS).
+OK, so there’s a LOT of information here that’s confusing. Let’s start by defining some of those terms. Let’s start with **HEAD** .
 
-Next, we have branch. The easiest way to think about a branch is that it is a label on a SHA. It has a few other properties that are useful, but for now, think of a branch as a SHA label.
+- HEAD is Git’s name for whatever SHA you happen to be looking at at any time. 
 
-Note: Those of you who have worked with other version control systems (I’m looking at you, Subversion) will have a very different idea of what a branch is. Git treats branches differently, and that is a good thing.
+- It does NOT mean what is on your filesystem or what is in your staging area. 
 
-When we put all this information together, we see that detached HEAD simply means that your HEAD is pointing to a SHA that does not have a branch (or label) associated with it. Git very nicely tells you how to fix that situation. There will be times when you will want to fix it, and there will be times when you can work in that detached HEAD state just fine.
+- It means what Git thinks you have checked out. So, if you’ve edited a file, the version on your filesystem is different than the version in HEAD (and yes, HEAD is in ALL CAPS).
+
+Next, we have `branch`. The easiest way to think about a **branch is that it is a label on a SHA.** 
+It has a few other properties that are useful, but for now, think of a branch as a SHA label.
+
+**Note**: Those of you who have worked with other version control systems (I’m looking at you, Subversion) will have a very different idea of what a branch is. Git treats branches differently, and that is a good thing.
+
+When we put all this information together, we see that **detached HEAD** simply means that your HEAD is pointing to a SHA that does not have a branch (or label) associated with it. Git very nicely tells you how to fix that situation. There will be times when you will want to fix it, and there will be times when you can work in that detached HEAD state just fine.
 
 Let’s get back to our demo. If you look at the state of the system now, you can see that the .gitignore file is no longer present. We went back to the state of the system before we made those changes. Below is the diagram of our repo at this state. Note how the HEAD and master pointers are pointing at different SHAs:
 
